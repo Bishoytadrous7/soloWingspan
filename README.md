@@ -1,24 +1,56 @@
 # Solo Wingspan Board Game
 
 This is a simplified, single-player Java version of the board game **Wingspan**.  
-The game can be played as a human or watch an AI play the game automatically using strategy and simulation.
+It can be played as a human or watch an AI play the game.
+
+![Wingspan Board Game](https://i.imgur.com/7QDiFcF.png)
 
 ---
 
-## 🎮 Game Overview
+## Game Overview
+---
+Wingspan is a card based engine-building game. The game runs for  26 turns, across 4 rounds:
 
-Wingspan is a card-based engine-building game where you play bird cards to earn points through:
+On each turn, the player (human or AI) can choose one of the main actions:  
+**Play a Bird**, **Gain Food**, **Lay Eggs**, or **Draw a Bird**.
 
-- Bird card points
-- Laid eggs
+Birds have special powers that activate either when played or when a habitat action is taken. The goal is to finish the game with the highest score possible based on:
+
+- Bird points
+- Eggs
 - Cached food
 - Tucked cards
-
-This simplified version removes some advanced mechanics (like round goals, bonus cards, powers that depend on other players) to focus on solo gameplay and AI strategy.
+  
+This simplified version removes some advanced mechanics (like round goals, bonus cards, powers that depend on other players) to focus on solo gameplay and achieve the best AI strategy.
 
 ---
 
-## 🧠 Modes Available
+## AI Strategies Used
+---
+We have tested several strategies to guide the AI toward smarter decisions.
+
+1- **Random bird selection** — AI played any bird that it could afford. (Too simple)
+
+2- **Highest-point birds** — Focused on playing birds with the highest points. (Too expensive to play at first)
+
+3- **Lowest-cost birds** — Focused on playing cheap birds to increase speed. (Too many low-impact birds)
+
+## Best Value Strategy — Final Strategy Used
+- Simulated **1000 games** for each bird at every possible turn in which it forces to play this bird on that exact turn.
+  
+- Calculated the **average score** each bird produced depending on when it was played.
+  
+- Used this simulation data to:
+  
+  - Pick the best bird **to play** based on current bird cards in hand and resources.
+    
+  - Choose the most valuable bird **to draw** when selecting from face-up cards.
+
+This strategy improved the AI performance and led to a higher score on average.
+
+---
+
+## Modes Available
 
 You can run the game in one of three modes:
 
@@ -30,19 +62,36 @@ You can run the game in one of three modes:
 
 ---
 
-## ▶️ How to Run
+## How to Run
 
-Make sure you compile the Java files first:
+Make sure compile all .java files into bin/ first:
 
 ```bash
-cd src
-javac Main.java
+javac -d bin src/*.java
+```
+Run the program from bin/ with one of the options:
+```bash
+java -cp bin Main human   
+java -cp bin Main ai      
+java -cp bin Main sim      
+```
 
-Run the game in one of the following modes:
+## Presentation
 
-java Main human  
-java Main ai      
-java Main sim     
+📄 [View the full presentation (PDF)](docs/Presentation.pdf)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
