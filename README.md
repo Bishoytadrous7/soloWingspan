@@ -78,7 +78,7 @@ java -cp bin Main sim
 
 ## Presentation
 
-[View full presentation (PDF)](presentation/simulatingAndOptmizingAiStrategies.pdf)
+[View full presentation (PDF)](presentation/simulatingAndOptimizingAiStrategies.pdf)
 
 
 
