@@ -514,7 +514,6 @@ for (int i = 0; i < faceUpCards.size(); i++) {
         }
     }
 }
- // If there's a good face-up card, take it
 if (best != null) {
     hand.add(best);
     System.out.println("AI drew face-up card: " + best.getName());
@@ -530,6 +529,60 @@ if (best != null) {
     System.out.println("AI drew blind card: " + drawn.getName());
 }
 }
+/* * AI 2 Drawing Strategy: Picks the most expensive face-up bird (highest food cost)
+Bird best = null;
+int bestIndex = -1;
+for (int i = 0; i < faceUpCards.size(); i++) {
+    Bird b = faceUpCards.get(i);
+    if (b != null && (best == null || b.getPoints() > best.getPoints())) {
+        best = b;
+        bestIndex = i;
+    }
+}
+    if (best != null) {
+        hand.add(best);
+        System.out.println("AI drew face-up card: " + best.getName());
+        if (!deck.isEmpty()) {
+            Collections.shuffle(deck);
+            faceUpCards.set(bestIndex, deck.remove(0));
+           } else {
+               faceUpCards.set(bestIndex, null);
+           }
+       } else if (!deck.isEmpty()) {
+           Bird drawn = deck.remove(0);
+           hand.add(drawn);
+           System.out.println("AI drew blind card: " + drawn.getName());
+       }
+   }
+*/
+
+/*
+ * AI 3 Drawing Strategy: Picks the cheapest face-up bird (lowest food cost)
+Bird best = null;
+int bestIndex = -1;
+for (int i = 0; i < faceUpCards.size(); i++) {
+    Bird b = faceUpCards.get(i);
+    if (b != null && (best == null || b.getFoodCost() < best.getFoodCost())) {
+        best = b;
+        bestIndex = i;
+    }
+}
+
+if (best != null) {
+    hand.add(best);
+    System.out.println("AI drew face-up card: " + best.getName());
+    if (!deck.isEmpty()) {
+        Collections.shuffle(deck);
+        faceUpCards.set(bestIndex, deck.remove(0));
+    } else {
+        faceUpCards.set(bestIndex, null);
+    }
+} else if (!deck.isEmpty()) {
+    Bird drawn = deck.remove(0);
+    hand.add(drawn);
+    System.out.println("AI drew blind card: " + drawn.getName());
+}
+*/
 
 
     // Removing one egg from any bird that has at least one egg
