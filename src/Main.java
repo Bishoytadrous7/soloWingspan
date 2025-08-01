@@ -6,15 +6,12 @@
  * "human": runs 1 human game
  *  "sim": runs 1000 AI simulations
  */
-
-
-
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("Usage: java Main [human | ai | sim]");
+            System.out.println( "Choose one of these modes using: java Main[human or ai or sim]");
             return;
         }
 
@@ -39,7 +36,6 @@ public class Main {
         Map<String, BirdValueData.BirdTurnValue[][]> birdValues = BirdValueData.getMap();
         List<Bird> fullDeck = BirdsDeck.createDeck();
 
-        // Fixed face-up card
         Bird fixedFirstCard = fullDeck.remove(0);
         Collections.shuffle(fullDeck);
 
@@ -123,7 +119,7 @@ public class Main {
             totalBirdPoints += player.getTotalBirdPoints();
         }
 
-        System.out.println("\n=== AI SIMULATION STATS ===");
+        System.out.println("\n--- Ai Simulation Results ---");
         System.out.println("Games played: " + numGames);
         System.out.println("Average score: " + (totalScore / (double) numGames));
         System.out.println("Max score: " + maxScore);
