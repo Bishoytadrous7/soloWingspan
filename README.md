@@ -78,7 +78,7 @@ java -cp bin Main sim
 
 ## Presentation
 
-📄 [View the full presentation (PDF)](docs/Presentation.pdf)
+[View full presentation (PDF)](Presentation/Simulating%20and%20Optimizing%20AI%20Strategies%20in%20a%20Simplified%20Wingspan%20Game.pdf)
 
 
 
