@@ -64,18 +64,19 @@ You can run the game in one of three modes:
 
 ## How to Run
 
-Make sure compile all .java files into bin/ first:
+**Make sure compile all .java files into bin/ first:**
 
 ```bash
 javac -d bin src/*.java
 ```
-Run the program from bin/ with one of the options:
+**Run the program from bin/ with one of the options:**
 ```bash
 java -cp bin Main human   
 java -cp bin Main ai      
 java -cp bin Main sim      
 ```
-To simulate playing a specific bird card on each turn and get its average game score:
+**To simulate playing a specific bird card on each turn and get its average game score:**
+
 1- Open BirdValueTester.java
 
 2- Set the specific bird to test:
