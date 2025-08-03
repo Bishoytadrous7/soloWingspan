@@ -75,6 +75,17 @@ java -cp bin Main human
 java -cp bin Main ai      
 java -cp bin Main sim      
 ```
+To simulate playing a specific bird card on each turn and get its average game score:
+1- Open BirdValueTester.java
+
+2- Set the specific bird to test:
+```bash
+Bird targetBird = BirdsDeck.getBirdByName("Juniper Titmouse");
+```
+3- Then run: 
+```bash
+java -cp bin BirdValueTester
+```
 
 ## Presentation
 
