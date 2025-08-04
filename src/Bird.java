@@ -22,6 +22,8 @@ public class Bird {
     private Powers power;
     private int foodCost;
     private int sizeCm;
+    private String habitat; // "forest", "grassland", or "wetland"
+
     // In-game stats
     private int eggs = 0;
     private int tuckedCards = 0;
@@ -47,6 +49,8 @@ public class Bird {
     this.foodCost = foodCost;
     this.sizeCm = sizeCm;
 }
+
+
 
     // Accessing bird's info (getters)
     public String getName() {
@@ -139,6 +143,32 @@ public class Bird {
     }
 }
 
+// (for BirdValueTester.java)
+//A copy constructor, creates a duplicate of the existing bird card so it can't be tucked or discarded from hand for example.
+public Bird(Bird other) {
+    this.name = other.name;
+    this.points = other.points;
+    this.eggLimit = other.eggLimit;
+    this.habitatForest = other.habitatForest;
+    this.habitatGrassland = other.habitatGrassland;
+    this.habitatWetland = other.habitatWetland;
+    this.powerType = other.powerType;
+    this.power = other.power; 
+    this.foodCost = other.foodCost;
+    this.sizeCm = other.sizeCm;
+    this.eggs = other.eggs;
+    this.tuckedCards = other.tuckedCards;
+    this.cachedFood = other.cachedFood;
+    this.habitat = other.habitat; 
+}
+
+public void setHabitat(String h) {
+    this.habitat = h;
+}
+
+public String getHabitat() {
+    return this.habitat;
+}
 
    @Override
    public String toString() {
