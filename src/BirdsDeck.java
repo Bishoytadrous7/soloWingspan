@@ -7,7 +7,17 @@ import java.util.*;
  */
 
 public class BirdsDeck {
+    //For bird cards value testing (for BirdValueTester.java)
+    public static Bird getBirdByName(String name) {
+    for (Bird b : createDeck()) {
+        if (b.getName().equalsIgnoreCase(name)) {
+            return b;
+        }
+    }
+    return null;
+}
     public static List<Bird> createDeck() {
+        
         List<Bird> deck = new ArrayList<>();
         deck.add(new Bird("Great Horned Owl", 8, 2, true, false, false, Bird.PowerType.ACTIVATED, new TuckShortBirdPower(100), 3, 112));
         deck.add(new Bird("Acorn Woodpecker", 5, 4, true, false, false, Bird.PowerType.ACTIVATED, new GainThenMaybeCachePower(), 3, 46 ));
