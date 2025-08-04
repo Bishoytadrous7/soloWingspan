@@ -273,6 +273,8 @@ if (birdValues != null) {
 
     // Loop through hand to find the best-value playable bird
     for (Bird b : hand) {
+    if (isForbidden(b)) continue; //(for BirdValueTester.java)
+        
         BirdValueData.BirdTurnValue[][] values = birdValues.get(b.getName());
         if (values != null && round < values.length && turn < values[round].length && values[round][turn] != null) {
             double score = values[round][turn].averageScore;
@@ -781,4 +783,61 @@ public void printFinalScore() {
     printRoundSummary();
     
 }
+
+public void discardEggs(int num) {
+    int remaining = num;
+    for (List<Bird> birdsInHabitat : playedBirds.values()) {
+        for (Bird b : birdsInHabitat) {
+            while (b.getEggs() > 0 && remaining > 0) {
+                b.setEggs(b.getEggs() - 1);
+                remaining--;
+            }
+            if (remaining == 0) return;
+        }
+    }
+}
+
+// Everything down here is for bird cards value testing (for for BirdValueTester.java)
+public void forcePlayBird(Bird bird, List<Bird> deck) {
+    if (!hand.contains(bird)) return;
+
+    String habitat = getPlayableHabitat(bird);
+    if (habitat == null) return;
+
+    hand.remove(bird);
+
+    for (int i = 0; i < bird.getFoodCost() && !food.isEmpty(); i++) {
+        food.remove(0);
+    }
+
+    int slotCost = playedBirds.get(habitat).size();
+    if (slotCost >= 2) {
+        discardEggs(slotCost - 1);
+    }
+
+    playedBirds.get(habitat).add(bird);
+    bird.setHabitat(habitat);
+    birdsPlayedThisTurn.add(bird);
+    lastAction = LastAction.PLAY;
+
+    if (bird.getPowerType() == Bird.PowerType.ON_PLAY) {
+        bird.getPower().onPlay(deck, this, bird);
+    }
+
+    System.out.println("Forced " + bird.getName() + " into play in " + habitat);
+}
+private Set<Bird> forbiddenBirds = new HashSet<>();
+
+public void setForbiddenBird(Bird b) {
+    forbiddenBirds.add(b);
+}
+
+public void clearForbiddenBirds() {
+    forbiddenBirds.clear();
+}
+
+public boolean isForbidden(Bird b) {
+    return forbiddenBirds.contains(b);
+}
+
 }
